@@ -11,15 +11,14 @@ export class AppComponent {
 
   constructor(private http: HttpClient){}
 
+
+
   async getTextHTML(){
 
     const httpHeaders = new HttpHeaders()
     .set('Content-Type', 'text/html')
-
     const result = await this.http.get('/order/total/30', {headers: httpHeaders}).toPromise()  
-
     console.info('text style', result)
-
   }
 
 // get json format
@@ -27,9 +26,7 @@ export class AppComponent {
 
     const httpHeaders = new HttpHeaders()
     .set('Content-Type', 'application/json')
-
     const result = await this.http.get('/order/total/30', {headers: httpHeaders}).toPromise()  
-
     console.info('json style', result)
   }
 

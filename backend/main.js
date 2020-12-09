@@ -67,11 +67,12 @@ app.get('/order/total/:orderID', async (req, resp) => {
                 }
 			})
 		}
-        
+
 	} catch(e) {
 		console.error('ERROR: ', e)
 		resp.status(500)
 		resp.end()
+		
 	} finally {
 		conn.release()
 	}
