@@ -12,12 +12,12 @@ export class AppComponent {
   constructor(private http: HttpClient){}
 
 
-
+// get text/html format
   async getTextHTML(){
 
     const httpHeaders = new HttpHeaders()
     .set('Content-Type', 'text/html')
-    const result = await this.http.get('/order/total/30', {headers: httpHeaders}).toPromise()  
+    const result = await this.http.get('/order/total/30', {headers: httpHeaders, responseType: 'text'}).toPromise()  
     console.info('text style', result)
   }
 

@@ -1,6 +1,7 @@
 // load the libs
 const express = require('express')
 const mysql = require('mysql2/promise')
+const cors = require('cors')
 
 // SQL
 const SQL_GET_ORDER_DETAILS = 'select * from orders_details_products where order_id = ?;'
@@ -35,6 +36,8 @@ const pool = mysql.createPool({
 
 // create an instance of the application
 const app = express()
+app.use (cors())
+
 
 app.get('/order/total/:orderID', async (req, resp) => {
 
@@ -54,16 +57,19 @@ app.get('/order/total/:orderID', async (req, resp) => {
             resp.format({
 
                 'text/html': function () {
-                  resp.send('text format: ', result)  
+				  console.info('express return type is text')
+				  resp.set('Content-Type', 'text/html')
+				  resp.send('text format data') 
                 },
               
                 'application/json': function () {
+					console.info('express return type is json')
                     resp.json(result)
                 },
               
                 default: function () {
                   resp.type('text/html')
-                  resp.send(result)
+                  resp.send('default format')
                 }
 			})
 		}
