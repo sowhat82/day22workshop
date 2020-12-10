@@ -15,8 +15,7 @@ export class AppComponent {
 // get text/html format
   async getTextHTML(){
 
-    const httpHeaders = new HttpHeaders()
-    .set('Content-Type', 'text/html')
+    const httpHeaders = new HttpHeaders().set('Accept', 'text/html')
     const result = await this.http.get('/order/total/30', {headers: httpHeaders, responseType: 'text'}).toPromise()  
     console.info('text style', result)
   }
@@ -24,8 +23,7 @@ export class AppComponent {
 // get json format
   async getJSON(){
 
-    const httpHeaders = new HttpHeaders()
-    .set('Content-Type', 'application/json')
+    const httpHeaders = new HttpHeaders().set('Accept', 'application/json')
     const result = await this.http.get('/order/total/30', {headers: httpHeaders}).toPromise()  
     console.info('json style', result)
   }
